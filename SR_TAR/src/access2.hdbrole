@@ -1,0 +1,11 @@
+{
+  "role":{
+        "name":"access#",
+        "schema_privileges":[
+             {
+                "privileges_with_grant_option":["SELECT", "CREATE OBJECT STRUCTURED PRIVILEGE"]
+             }
+             
+            ]
+        }
+    }    

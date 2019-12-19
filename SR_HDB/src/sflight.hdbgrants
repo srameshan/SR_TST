@@ -1,0 +1,20 @@
+{
+	"SFLIGHT":{
+		"object_owner":{
+			"schema_privileges":[
+				{
+					"reference": "SFLIGHT",
+					"privileges_with_grant_option": ["SELECT", "CREATE OBJECT STRUCTURED PRIVILEGE"]
+				}
+			]
+		},
+		"application_user":{
+			"schema_privileges":[
+				{
+					"reference": "SFLIGHT",
+					"privileges": ["SELECT", "CREATE OBJECT STRUCTURED PRIVILEGE"]
+				}
+			]
+		}
+	}
+}

@@ -1,0 +1,8 @@
+{
+  "SR_CV1": {
+    "target": {
+      "object": "SR_CV1",
+      "schema": "SRHDB"
+    }
+  }
+}

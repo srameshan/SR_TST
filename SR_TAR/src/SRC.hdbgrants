@@ -1,0 +1,12 @@
+{
+	"hdi_SR_HDB":{
+		"object_owner":{
+			"container_roles":["access#"
+			]
+		},
+		"application_user":{
+			"container_roles":["access"
+			]
+		}
+	}	
+}

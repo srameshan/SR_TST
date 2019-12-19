@@ -1,0 +1,93 @@
+ID: SR_TST
+_schema-version: '2.1'
+description: SR_TST
+version: 0.0.1
+modules:
+  - name: SR_HDB
+    type: hdb
+    path: SR_HDB
+    requires:
+      - name: hdi_SR_HDB
+        properties:
+          TARGET_CONTAINER: '~{hdi-container-name}'
+      - name: cross-container-service-1
+        group: SERVICE_REPLACEMENTS
+        properties:
+          key: ServiceName_1
+          service: '~{the-service-name}'
+      - name: cross-container-service-3
+        group: SERVICE_REPLACEMENTS
+        properties:
+          key: ServiceName_3
+          service: '~{the-service-name}'
+      - name: cross-container-service-4
+        group: SERVICE_REPLACEMENTS
+        properties:
+          key: ServiceName_2
+          service: '~{the-service-name}'
+  - name: SR_TAR
+    type: hdb
+    path: SR_TAR
+    requires:
+      - name: hdi_SR_TAR
+        properties:
+          TARGET_CONTAINER: '~{hdi-container-name_2}'
+      - name: cross-container-service-2
+        group: SERVICE_REPLACEMENTS
+        properties:
+          key: ServiceName_1
+          service: '~{the-service-name}'
+  - name: SR_ODATA
+    type: nodejs
+    path: SR_ODATA
+    provides:
+      - name: SR_ODATA_api
+        properties:
+          url: '${default-url}'
+    requires:
+      - name: hdi_SR_HDB
+  - name: SR_UI5
+    type: html5
+    path: SR_UI5
+    requires:
+      - name: hdi_SR_HDB
+      - name: SR_ODATA_api
+resources:
+  - name: hdi_SR_HDB
+    parameters:
+      config:
+        schema: SRHDB
+    properties:
+      hdi-container-name: '${service-name}'
+    type: com.sap.xs.hdi-container
+  - name: cross-container-service-1
+    parameters:
+      service-name: SFLIGHT
+    properties:
+      the-service-name: '${service-name}'
+    type: org.cloudfoundry.existing-service
+  - name: hdi_SR_TAR
+    parameters:
+      config:
+        schema: SRTAR
+    properties:
+      hdi-container-name_2: '${service-name}'
+    type: com.sap.xs.hdi-container
+  - name: cross-container-service-2
+    parameters:
+      service-name: hdi_SR_HDB
+    properties:
+      the-service-name: '${service-name}'
+    type: org.cloudfoundry.existing-service
+  - name: cross-container-service-3
+    parameters:
+      service-name: HDB_2_UPS
+    properties:
+      the-service-name: '${service-name}'
+    type: org.cloudfoundry.existing-service
+  - name: cross-container-service-4
+    parameters:
+      service-name: SYS_UPS
+    properties:
+      the-service-name: '${service-name}'
+    type: org.cloudfoundry.existing-service
