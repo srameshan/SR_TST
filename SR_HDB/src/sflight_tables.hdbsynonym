@@ -46,5 +46,23 @@
       "object": "TEAMLOGON",
       "schema": "SFLIGHT"
     }
+  },
+  "FACTS": {
+    "target": {
+      "object": "FACTS",
+      "schema": "SFLIGHT"
+    }
+  },
+  "DIM": {
+    "target": {
+      "object": "DIM",
+      "schema": "SFLIGHT"
+    }
+  },
+  "PC_FACT": {
+    "target": {
+      "object": "PC_FACT",
+      "schema": "SFLIGHT"
+    }
   }
 }

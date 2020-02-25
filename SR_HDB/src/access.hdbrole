@@ -3,13 +3,7 @@
         "name":"access",
         "schema_privileges":[
              {
-                "privileges":["SELECT","CREATE OBJECT STRUCTURED PRIVILEGE"]
-             }
-             
-            ],
-        "schema_analytic_privileges":[
-             {
-                "privileges":["AP2"]
+                "privileges":["SELECT"]
              }
              
             ]

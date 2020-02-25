@@ -4,7 +4,7 @@
 			"schema_privileges":[
 				{
 					"reference": "SFLIGHT",
-					"privileges_with_grant_option": ["SELECT", "CREATE OBJECT STRUCTURED PRIVILEGE"]
+					"privileges_with_grant_option": ["SELECT"]
 				}
 			]
 		},
@@ -12,7 +12,7 @@
 			"schema_privileges":[
 				{
 					"reference": "SFLIGHT",
-					"privileges": ["SELECT", "CREATE OBJECT STRUCTURED PRIVILEGE"]
+					"privileges": ["SELECT"]
 				}
 			]
 		}

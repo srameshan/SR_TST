@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Calculation:scenario xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="SR_CV1" applyPrivilegeType="NONE" dataCategory="CUBE" dimensionType="STANDARD" schemaVersion="3.0" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
-<descriptions defaultDescription="SR_CV1"/>
+<Calculation:scenario xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="SR_DMASK" applyPrivilegeType="NONE" dataCategory="CUBE" dimensionType="STANDARD" schemaVersion="3.0" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="CV_DMASK"/>
 <localVariables/>
 <variableMappings/>
 <dataSources>
@@ -17,6 +17,7 @@
     </attribute>
     <attribute id="CARRID" order="2" displayAttribute="false" attributeHierarchyActive="false">
       <descriptions defaultDescription="CARRID"/>
+      <maskingExpression>'*'||RIGHT(&quot;CARRID&quot;,1)</maskingExpression>
       <keyMapping columnObjectName="SCARR" columnName="CARRID"/>
     </attribute>
     <attribute id="CARRNAME" order="3" displayAttribute="false" attributeHierarchyActive="false">

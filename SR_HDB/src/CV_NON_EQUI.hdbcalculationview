@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="CV_NON_EQUI" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="CV_NON_EQUI"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="FACTS">
+    <resourceUri>FACTS</resourceUri>
+  </DataSource>
+  <DataSource id="DIM">
+    <resourceUri>DIM</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="FACT_DATA">
+    <viewAttributes>
+      <viewAttribute id="TRANS_DATE"/>
+      <viewAttribute id="VALUE"/>
+      <viewAttribute id="ID"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="FACTS"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="DIM_DATA">
+    <viewAttributes>
+      <viewAttribute id="ID"/>
+      <viewAttribute id="DATEFROM"/>
+      <viewAttribute id="DATETO"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="DIM"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:NonEquiJoinView" id="NonEquiJoin_1" cardinality="CN_N" joinType="inner">
+    <viewAttributes>
+      <viewAttribute id="TRANS_DATE" aggregationType="sum"/>
+      <viewAttribute id="VALUE" aggregationType="sum"/>
+      <viewAttribute id="ID"/>
+      <viewAttribute id="DATEFROM" aggregationType="sum"/>
+      <viewAttribute id="DATETO" aggregationType="sum"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="FACT_DATA">
+      <mapping xsi:type="Calculation:AttributeMapping" target="TRANS_DATE" source="TRANS_DATE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="VALUE" source="VALUE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ID" source="ID"/>
+    </input>
+    <input node="DIM_DATA">
+      <mapping xsi:type="Calculation:AttributeMapping" target="DATEFROM" source="DATEFROM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DATETO" source="DATETO"/>
+    </input>
+    <joinAttribute leftColumn="TRANS_DATE" rightColumn="DATEFROM" operator="GT"/>
+    <joinAttribute leftColumn="TRANS_DATE" rightColumn="DATETO" operator="LT"/>
+    <joinAttribute leftColumn="ID" rightColumn="ID" operator="EQ"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="NonEquiJoin_1">
+  <attributes>
+    <attribute id="TRANS_DATE" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="TRANS_DATE"/>
+      <keyMapping columnObjectName="NonEquiJoin_1" columnName="TRANS_DATE"/>
+    </attribute>
+    <attribute id="ID" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ID"/>
+      <keyMapping columnObjectName="NonEquiJoin_1" columnName="ID"/>
+    </attribute>
+    <attribute id="DATEFROM" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DATEFROM"/>
+      <keyMapping columnObjectName="NonEquiJoin_1" columnName="DATEFROM"/>
+    </attribute>
+    <attribute id="DATETO" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DATETO"/>
+      <keyMapping columnObjectName="NonEquiJoin_1" columnName="DATETO"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="VALUE" order="2" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="VALUE"/>
+      <measureMapping columnObjectName="NonEquiJoin_1" columnName="VALUE"/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="221.11302679000914" y="112"/>
+    
+      <rectangleSize width="160"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="FACT_DATA" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="92" y="376.9999988079071"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="DIM_DATA" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="302.00000000000006" y="376.9999988079071"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="NonEquiJoin_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="221.11302679000914" y="217"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="FACT_DATA" modelObjectNameSpace="NonEquiJoin_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="157.9189453125"/>
+    </shape>
+    <shape modelObjectName="DIM_DATA" modelObjectNameSpace="NonEquiJoin_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="382" y="91"/>
+      <rectangleSize width="146.90283203125"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

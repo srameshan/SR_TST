@@ -15,16 +15,8 @@ modules:
         properties:
           key: ServiceName_1
           service: '~{the-service-name}'
-      - name: cross-container-service-3
-        group: SERVICE_REPLACEMENTS
-        properties:
-          key: ServiceName_3
-          service: '~{the-service-name}'
-      - name: cross-container-service-4
-        group: SERVICE_REPLACEMENTS
-        properties:
-          key: ServiceName_2
-          service: '~{the-service-name}'
+
+
   - name: SR_TAR
     type: hdb
     path: SR_TAR
@@ -79,15 +71,5 @@ resources:
     properties:
       the-service-name: '${service-name}'
     type: org.cloudfoundry.existing-service
-  - name: cross-container-service-3
-    parameters:
-      service-name: HDB_2_UPS
-    properties:
-      the-service-name: '${service-name}'
-    type: org.cloudfoundry.existing-service
-  - name: cross-container-service-4
-    parameters:
-      service-name: SYS_UPS
-    properties:
-      the-service-name: '${service-name}'
-    type: org.cloudfoundry.existing-service
+
+
